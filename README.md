@@ -4,9 +4,19 @@ A modern, attractive, responsive agricultural website created for a family-owned
 
 ---
 
-## 🌿 Overview
+## 🌐 Live Website
 
-**MyFarm – Growing with Nature** represents an authentic family-run agricultural business. The website combines a fresh natural green, white, and earthy-brown color palette, clean typography, responsive layout design, and real agricultural imagery without fake claims or artificial marketing gimmicks.
+> **Live Demo:** [https://myfarm-farmmanagement.vercel.app/](https://myfarm-farmmanagement.vercel.app/)
+
+---
+
+## 🌿 About the Farm & Project
+
+**MyFarm – Growing with Nature** represents an authentic family-run agricultural business. Cultivating their own generational farmland with care, devotion, and respect for the soil, this website showcases real farm crops, honest farming practices, and contact details for visitors and buyers.
+
+* **Live URL:** [https://myfarm-farmmanagement.vercel.app/](https://myfarm-farmmanagement.vercel.app/)
+* **Theme:** Fresh Green, White, and Earthy Brown
+* **Tech Stack:** HTML5, CSS3, Vanilla JavaScript (Zero build step, fully static & fast)
 
 ---
 
@@ -72,12 +82,16 @@ MyFarm/
 
 ---
 
-## 🚀 How to Run the Website
+## 🚀 How to Run Locally
 
 Because this project is built using pure **HTML5, CSS3, and modern Vanilla JavaScript**, it requires no build tools or package managers:
 
 1. Double-click `index.html` to open it in any web browser (Chrome, Edge, Firefox, Safari).
-2. Alternatively, you can serve it via any local web server (such as VS Code Live Server or Python `http.server`).
+2. Alternatively, you can serve it via Python:
+   ```bash
+   python -m http.server 8000
+   ```
+   and navigate to [http://localhost:8000](http://localhost:8000).
 
 ---
 
@@ -105,7 +119,7 @@ Open `js/crops-data.js`. You will find the `cropsData` array where each crop is 
 Simply edit any field or add another crop entry to immediately update the website.
 
 ### 2. Updating Contact Information:
-Open `index.html` and search for the `<section id="contact">` or `site-footer` to customize your actual phone numbers, email addresses, or physical farm address.
+Open `index.html` and search for `<section id="contact">` or `site-footer` to customize your actual phone numbers, email addresses, or physical farm address.
 
 ### 3. Theme Colors:
 Open `css/styles.css`. At the top under `:root`, you can adjust the green and brown color values:
@@ -118,4 +132,3 @@ Open `css/styles.css`. At the top under `:root`, you can adjust the green and br
   /* ... */
 }
 ```
-
