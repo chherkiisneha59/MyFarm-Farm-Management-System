@@ -154,3 +154,4 @@ sequenceDiagram
     User->>Vercel: HTTPS Request (myfarm-farmmanagement.vercel.app)
     Vercel-->>User: Gzip/Brotli Cached Static Assets (< 100ms TTFB)
 ```
+

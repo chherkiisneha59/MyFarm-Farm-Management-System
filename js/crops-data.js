@@ -1,10 +1,3 @@
-/**
- * crops-data.js - Editable Crop Information for MyFarm
- * 
- * You can easily add, edit, or remove crops by updating this file.
- * Each crop object contains all details shown on the crop cards and detail modal.
- */
-
 const cropsData = [
   {
     id: "wheat",
@@ -104,19 +97,15 @@ const cropsData = [
   }
 ];
 
-// Helper to get all crops
 function getAllCrops() {
   return cropsData;
 }
 
-// Helper to filter by category
 function getCropsByCategory(category) {
   if (category === "all") return cropsData;
   return cropsData.filter(crop => crop.category === category);
 }
 
-// Export for module/browser
 if (typeof module !== "undefined" && module.exports) {
   module.exports = { cropsData, getAllCrops, getCropsByCategory };
 }
-

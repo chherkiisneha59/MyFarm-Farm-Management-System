@@ -1,10 +1,4 @@
-/**
- * script.js - Interactive Functionality for MyFarm Website
- * Clean, accessible Vanilla JavaScript
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize all interactive modules
   initNavigation();
   initCrops();
   initGallery();
@@ -14,16 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollSpy();
 });
 
-/* --------------------------------------------------
-   1. Navigation & Mobile Menu
-   -------------------------------------------------- */
 function initNavigation() {
   const navbar = document.querySelector('.navbar');
   const mobileToggle = document.querySelector('.mobile-toggle');
   const navMenu = document.querySelector('.nav-menu');
   const navLinks = document.querySelectorAll('.nav-link, .nav-btn');
 
-  // Sticky navbar shadow on scroll
   window.addEventListener('scroll', () => {
     if (window.scrollY > 30) {
       navbar.classList.add('scrolled');
@@ -32,20 +22,17 @@ function initNavigation() {
     }
   }, { passive: true });
 
-  // Mobile hamburger menu toggle
   if (mobileToggle && navMenu) {
     mobileToggle.addEventListener('click', () => {
       const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
       mobileToggle.setAttribute('aria-expanded', !isExpanded);
       navMenu.classList.toggle('open');
       
-      // Update hamburger icon
       mobileToggle.innerHTML = isExpanded 
         ? `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`
         : `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
     });
 
-    // Close menu when a link is clicked
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('open');
@@ -54,7 +41,6 @@ function initNavigation() {
       });
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
       if (!navbar.contains(e.target) && navMenu.classList.contains('open')) {
         navMenu.classList.remove('open');
@@ -65,9 +51,6 @@ function initNavigation() {
   }
 }
 
-/* --------------------------------------------------
-   2. Scroll Spy (Active Navigation Highlighting)
-   -------------------------------------------------- */
 function initScrollSpy() {
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-menu .nav-link');
@@ -93,9 +76,6 @@ function initScrollSpy() {
   }, { passive: true });
 }
 
-/* --------------------------------------------------
-   3. Crops Rendering & Filtering & Modal
-   -------------------------------------------------- */
 function initCrops() {
   const cropsGrid = document.getElementById('cropsGrid');
   const filterBtns = document.querySelectorAll('.crops-filter-bar .filter-btn');
@@ -105,7 +85,6 @@ function initCrops() {
 
   if (!cropsGrid || typeof cropsData === 'undefined') return;
 
-  // Render cards based on category
   function renderCrops(category = 'all') {
     const filtered = (category === 'all') 
       ? cropsData 
@@ -143,7 +122,6 @@ function initCrops() {
       </article>
     `).join('');
 
-    // Attach click events to "View Cultivation Details" buttons
     const detailButtons = cropsGrid.querySelectorAll('[data-open-crop]');
     detailButtons.forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -154,10 +132,8 @@ function initCrops() {
     });
   }
 
-  // Initial render
   renderCrops('all');
 
-  // Filter button click event
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
@@ -167,7 +143,6 @@ function initCrops() {
     });
   });
 
-  // Modal open function
   function openCropModal(cropId) {
     const crop = cropsData.find(c => c.id === cropId);
     if (!crop || !cropModal || !cropModalContent) return;
@@ -209,7 +184,6 @@ function initCrops() {
     document.body.style.overflow = 'hidden';
   }
 
-  // Close modal
   function closeCropModalHandler() {
     if (cropModal) {
       cropModal.classList.remove('active');
@@ -227,7 +201,6 @@ function initCrops() {
     });
   }
 
-  // Close modal with ESC key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && cropModal && cropModal.classList.contains('active')) {
       closeCropModalHandler();
@@ -235,11 +208,7 @@ function initCrops() {
   });
 }
 
-/* --------------------------------------------------
-   4. Farming Practices Interactivity
-   -------------------------------------------------- */
 function initFarmingPractices() {
-  // Add subtle interactive highlight on practice cards when scrolling or hovering
   const practiceCards = document.querySelectorAll('.practice-card');
   practiceCards.forEach(card => {
     card.addEventListener('mouseenter', () => {
@@ -251,9 +220,6 @@ function initFarmingPractices() {
   });
 }
 
-/* --------------------------------------------------
-   5. Photo Gallery & Lightbox
-   -------------------------------------------------- */
 const galleryItemsData = [
   {
     src: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=80",
@@ -354,7 +320,6 @@ function initGallery() {
       </div>
     `).join('');
 
-    // Attach click events
     const items = galleryGrid.querySelectorAll('.gallery-item');
     items.forEach(el => {
       el.addEventListener('click', () => {
@@ -364,10 +329,8 @@ function initGallery() {
     });
   }
 
-  // Initial render
   renderGallery('all');
 
-  // Filter button handlers
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       filterBtns.forEach(b => b.classList.remove('active'));
@@ -377,7 +340,6 @@ function initGallery() {
     });
   });
 
-  // Lightbox view updater
   function openLightbox(index) {
     currentLightboxIndex = index;
     updateLightboxContent();
@@ -423,7 +385,6 @@ function initGallery() {
     });
   }
 
-  // Keyboard navigation for lightbox
   document.addEventListener('keydown', (e) => {
     if (!lightbox || !lightbox.classList.contains('active')) return;
     if (e.key === 'Escape') closeLightbox();
@@ -432,9 +393,6 @@ function initGallery() {
   });
 }
 
-/* --------------------------------------------------
-   6. Contact Form Validation & Submission
-   -------------------------------------------------- */
 function initContactForm() {
   const contactForm = document.getElementById('farmContactForm');
   const toastNotice = document.getElementById('toastNotice');
@@ -452,7 +410,6 @@ function initContactForm() {
     const messageInput = document.getElementById('contactMessage');
     const submitBtn = contactForm.querySelector('.btn-submit');
 
-    // Basic Validation
     const name = nameInput.value.trim();
     const email = emailInput.value.trim();
     const message = messageInput.value.trim();
@@ -475,7 +432,6 @@ function initContactForm() {
       return;
     }
 
-    // Simulate sending with nice button feedback
     const originalBtnText = submitBtn.innerHTML;
     submitBtn.disabled = true;
     submitBtn.innerHTML = `
@@ -483,13 +439,11 @@ function initContactForm() {
       <span>Submitting message...</span>
     `;
 
-    // Simulated short network delay
     setTimeout(() => {
       submitBtn.disabled = false;
       submitBtn.innerHTML = originalBtnText;
       contactForm.reset();
 
-      // Show friendly confirmation toast
       showToast(`Thank you, ${name}! Your inquiry has been received. Our farm family will get back to you shortly.`);
     }, 900);
   });
@@ -511,9 +465,6 @@ function initContactForm() {
   }
 }
 
-/* --------------------------------------------------
-   7. Back to Top Button
-   -------------------------------------------------- */
 function initBackToTop() {
   const backToTopBtn = document.getElementById('backToTopBtn');
   if (!backToTopBtn) return;
@@ -533,4 +484,3 @@ function initBackToTop() {
     });
   });
 }
-
